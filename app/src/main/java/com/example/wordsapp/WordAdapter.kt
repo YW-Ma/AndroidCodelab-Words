@@ -28,6 +28,9 @@ import androidx.recyclerview.widget.RecyclerView
 /**
  * Adapter for the [RecyclerView] in [DetailActivity].
  */
+// need two thing:
+// 1. need the letterId. to filter the corresponding words
+// 2. need context, to get the all words list.
 class WordAdapter(private val letterId: String, context: Context) :
     RecyclerView.Adapter<WordAdapter.WordViewHolder>() {
 
@@ -51,7 +54,7 @@ class WordAdapter(private val letterId: String, context: Context) :
     }
 
     class WordViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val button = view.findViewById<Button>(R.id.button_item)
+        val button: Button = view.findViewById(R.id.button_item)
     }
 
     override fun getItemCount(): Int = filteredWords.size
@@ -60,27 +63,37 @@ class WordAdapter(private val letterId: String, context: Context) :
      * Creates new views with R.layout.item_view as its template
      */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WordViewHolder {
-        val layout = LayoutInflater
+        var wordItem = LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_view, parent, false)
 
-        // Setup custom accessibility delegate to set the text read
-        layout.accessibilityDelegate = Accessibility
+        return WordViewHolder(wordItem) // don't have text and other content now. (not bind to data yet)
 
-        return WordViewHolder(layout)
+        // val wordItem = LayoutInflater
+        //     .from(parent.context)
+        //     .inflate(R.layout.item_view, parent, false)
+        //
+        // // Setup custom accessibility delegate to set the text read
+        // wordItem.accessibilityDelegate = Accessibility
+        //
+        // return WordViewHolder(wordItem)
     }
 
     /**
      * Replaces the content of an existing view with new data
      */
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
+        holder.button.text = filteredWords[position]
 
-        val item = filteredWords[position]
-        // Needed to call startActivity
+        // needed to call startActivity
         val context = holder.view.context
 
-        // Set the text of the WordViewHolder
-        holder.button.text = item
+        // val item = filteredWords[position]
+        // // Needed to call startActivity
+        // val context = holder.view.context
+        //
+        // // Set the text of the WordViewHolder
+        // holder.button.text = item
 
     }
     // Setup custom accessibility delegate to set the text read with

@@ -32,6 +32,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // defines what is built.
     buildTypes {
         release {
             minifyEnabled false

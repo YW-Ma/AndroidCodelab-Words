@@ -39,8 +39,8 @@ class LetterAdapter : RecyclerView.Adapter<LetterViewHolder>() {
     private var list = ('A' .. 'Z').toList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LetterViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
-        return LetterViewHolder(view)
+        val letterItem = LayoutInflater.from(parent.context).inflate(R.layout.item_view, parent, false)
+        return LetterViewHolder(letterItem)
     }
 
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
