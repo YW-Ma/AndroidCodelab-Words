@@ -15,6 +15,7 @@
  */
 package com.example.wordsapp
 
+import android.content.Intent
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -45,7 +46,15 @@ class LetterAdapter : RecyclerView.Adapter<LetterViewHolder>() {
 
     override fun onBindViewHolder(holder: LetterViewHolder, position: Int) {
         val item: Char = list[position]
+        // Set button
         holder.button.text = item.toString() // Char can .toString()
+        // Set button callback
+        holder.button.setOnClickListener {
+            val context = it.context
+            val intent = Intent(context, DetailActivity::class.java) // Intent(context, cls)
+            intent.putExtra(DetailActivity.LETTER, holder.button.text)
+            context.startActivity(intent)
+        }
     }
 
     override fun getItemCount(): Int {

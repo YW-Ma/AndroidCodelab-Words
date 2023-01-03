@@ -16,6 +16,8 @@
 package com.example.wordsapp
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
@@ -83,10 +85,15 @@ class WordAdapter(private val letterId: String, context: Context) :
      * Replaces the content of an existing view with new data
      */
     override fun onBindViewHolder(holder: WordViewHolder, position: Int) {
+        // bind button text
         holder.button.text = filteredWords[position]
-
-        // needed to call startActivity
-        val context = holder.view.context
+        // bind button action
+        holder.button.setOnClickListener {
+            val queryUrl: Uri = Uri.parse("${DetailActivity.SEARCH_PREFIX}${holder.button.text}")
+            val intent = Intent(Intent.ACTION_VIEW, queryUrl) // Intent(action, uri)
+            val context = it.context
+            context.startActivity(intent)
+        }
 
         // val item = filteredWords[position]
         // // Needed to call startActivity
