@@ -35,70 +35,61 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
-        recyclerView = binding.recyclerView
-        // Sets the LinearLayoutManager of the recyclerview
-        // recyclerView.layoutManager = LinearLayoutManager(this)
-        // recyclerView.adapter = LetterAdapter()
-        chooseLayout()
     }
-
-    /**
-     * To toggle between linearLayoutManager and gridLayoutManager
-     * 1. use the options menu to perform (override onCreateOptionsMenu and onOptionsItemSelected)
-     * 2. in onCreate, set using menuInflater to inflate the entire menu list, and then specific menu item button we use
-     * 3. in onSelected, first filter out the item we interact with, then toggle the boolean, set layoutManager, and rerun the set content
-     * 4. helper methods:
-     *    - set content (setIcon, icon will change)
-     *    - set layout (chooseLayout, assign layoutManager and adapter)
-     * */
-    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.layout_menu, menu)
-
-        val layoutChangeButton: MenuItem? = menu?.findItem(R.id.action_switch_layout)
-        setIcon(layoutChangeButton)
-
-        return true
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when(item.itemId) {
-            R.id.action_switch_layout -> {
-                // toggle the boolean
-                // set the layout
-                isLinearLayoutManager = !isLinearLayoutManager
-                setIcon(item)
-                chooseLayout()
-                return true
-            }
-            else -> super.onOptionsItemSelected(item)
-        }
-    }
-
-    private fun chooseLayout() {
-        recyclerView.layoutManager = if (isLinearLayoutManager) {
-            LinearLayoutManager(this)
-        } else {
-            GridLayoutManager(this, 4)
-        }
-        recyclerView.adapter = LetterAdapter()
-    }
-
-    @SuppressLint("NewApi")
-    private fun setIcon(layoutChangeButton: MenuItem?) {
-        if (layoutChangeButton == null) {
-            return
-        }
-
-        layoutChangeButton.icon = if (isLinearLayoutManager) {
-            this.getDrawable(R.drawable.ic_grid_layout)
-        } else {
-            this.getDrawable(R.drawable.ic_linear_layout)
-        }
-    }
+    //
+    // /**
+    //  * To toggle between linearLayoutManager and gridLayoutManager
+    //  * 1. use the options menu to perform (override onCreateOptionsMenu and onOptionsItemSelected)
+    //  * 2. in onCreate, set using menuInflater to inflate the entire menu list, and then specific menu item button we use
+    //  * 3. in onSelected, first filter out the item we interact with, then toggle the boolean, set layoutManager, and rerun the set content
+    //  * 4. helper methods:
+    //  *    - set content (setIcon, icon will change)
+    //  *    - set layout (chooseLayout, assign layoutManager and adapter)
+    //  * */
+    // override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+    //     menuInflater.inflate(R.menu.layout_menu, menu)
+    //
+    //     val layoutChangeButton: MenuItem? = menu?.findItem(R.id.action_switch_layout)
+    //     setIcon(layoutChangeButton)
+    //
+    //     return true
+    // }
+    //
+    // override fun onOptionsItemSelected(item: MenuItem): Boolean {
+    //     return when(item.itemId) {
+    //         R.id.action_switch_layout -> {
+    //             // toggle the boolean
+    //             // set the layout
+    //             isLinearLayoutManager = !isLinearLayoutManager
+    //             setIcon(item)
+    //             chooseLayout()
+    //             return true
+    //         }
+    //         else -> super.onOptionsItemSelected(item)
+    //     }
+    // }
+    //
+    // private fun chooseLayout() {
+    //     recyclerView.layoutManager = if (isLinearLayoutManager) {
+    //         LinearLayoutManager(this)
+    //     } else {
+    //         GridLayoutManager(this, 4)
+    //     }
+    //     recyclerView.adapter = LetterAdapter()
+    // }
+    //
+    // @SuppressLint("NewApi")
+    // private fun setIcon(layoutChangeButton: MenuItem?) {
+    //     if (layoutChangeButton == null) {
+    //         return
+    //     }
+    //
+    //     layoutChangeButton.icon = if (isLinearLayoutManager) {
+    //         this.getDrawable(R.drawable.ic_grid_layout)
+    //     } else {
+    //         this.getDrawable(R.drawable.ic_linear_layout)
+    //     }
+    // }
 
     // override fun onCreateOptionsMenu(menu: Menu?): Boolean {
     //     menuInflater.inflate(R.menu.layout_menu, menu)

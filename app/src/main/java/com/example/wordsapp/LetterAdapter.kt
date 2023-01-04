@@ -52,7 +52,7 @@ class LetterAdapter : RecyclerView.Adapter<LetterViewHolder>() {
         holder.button.setOnClickListener {
             val context = it.context
             val intent = Intent(context, DetailActivity::class.java) // Intent(context, cls)
-            intent.putExtra(DetailActivity.LETTER, holder.button.text)
+            intent.putExtra(WordListFragment.LETTER, holder.button.text)
             context.startActivity(intent)
         }
     }
