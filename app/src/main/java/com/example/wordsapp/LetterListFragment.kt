@@ -49,6 +49,7 @@ class LetterListFragment : Fragment() {
     savedInstanceState: Bundle?
   ): View? {
     _binding = FragmentLetterListBinding.inflate(inflater, container, false)
+    // activity version will be ActivityXXXX.inflate(layoutInflater)
     val view = binding.root
     return view
   }

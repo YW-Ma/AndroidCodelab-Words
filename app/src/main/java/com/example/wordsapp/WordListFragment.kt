@@ -16,11 +16,14 @@ class WordListFragment : Fragment() {
   }
 
   private var _binding: FragmentWordListBinding? = null
-  val binding get() = _binding!!
+  private val binding get() = _binding!!
+  private lateinit var letterId: String
 
-  // override fun onCreate(savedInstanceState: Bundle?) {
-  //   super.onCreate(savedInstanceState)
-  // }
+  // argument should be in onCreate!
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    letterId = arguments?.getString(LETTER).toString() // .toString() feed in ? and return not nullable.
+  }
 
   override fun onCreateView(
     inflater: LayoutInflater,
@@ -36,7 +39,6 @@ class WordListFragment : Fragment() {
     // Retrieve the LETTER from the Intent extras
     // intent.extras.getString returns String? (String or null)
     // so toString() guarantees that the value will be a String
-    val letterId = activity?.intent?.extras?.getString(LETTER).toString() // .toString() feed in ? and return not nullable.
 
     val recyclerView = binding.recyclerView
     recyclerView.layoutManager = LinearLayoutManager(requireContext())
