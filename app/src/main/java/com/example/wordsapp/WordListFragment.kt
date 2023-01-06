@@ -13,6 +13,7 @@ class WordListFragment : Fragment() {
   companion object { // similar to abstract
     const val LETTER = "letter"
     const val SEARCH_PREFIX = "https://www.google.com/search?q="
+    const val WORD = "word"
   }
 
   private var _binding: FragmentWordListBinding? = null

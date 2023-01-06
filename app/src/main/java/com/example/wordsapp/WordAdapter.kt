@@ -25,6 +25,7 @@ import android.view.ViewGroup
 import android.view.accessibility.AccessibilityNodeInfo
 import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 
 /**
@@ -89,10 +90,8 @@ class WordAdapter(private val letterId: String, context: Context) :
         holder.button.text = filteredWords[position]
         // bind button action
         holder.button.setOnClickListener {
-            val queryUrl: Uri = Uri.parse("${WordListFragment.SEARCH_PREFIX}${holder.button.text}")
-            val intent = Intent(Intent.ACTION_VIEW, queryUrl) // Intent(action, uri)
-            val context = it.context
-            context.startActivity(intent)
+            val action = WordListFragmentDirections.actionWordListFragmentToGreetingFragment(holder.button.text.toString())
+            holder.view.findNavController().navigate(action)
         }
 
         // val item = filteredWords[position]

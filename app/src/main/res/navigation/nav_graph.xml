@@ -18,9 +18,22 @@
   <fragment
       android:id="@+id/wordListFragment"
       android:name="com.example.wordsapp.WordListFragment"
+      android:label="@string/word_list_fragment_label"
       tools:layout="@layout/fragment_word_list">
+    <action
+        android:id="@+id/action_wordListFragment_to_greetingFragment"
+        app:destination="@id/greetingFragment" />
     <argument
         android:name="letter"
+        app:argType="string" />
+  </fragment>
+  <fragment
+      android:id="@+id/greetingFragment"
+      android:name="com.example.wordsapp.GreetingFragment"
+      android:label="@string/greeting_fragment_label"
+      tools:layout="@layout/fragment_greeting">
+    <argument
+        android:name="word"
         app:argType="string" />
   </fragment>
 </navigation>
